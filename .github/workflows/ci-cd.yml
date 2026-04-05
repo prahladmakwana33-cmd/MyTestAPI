@@ -43,6 +43,7 @@ jobs:
           key: ${{ secrets.PROD_SERVER_SSH_KEY }}
           script: |
             cd /var/www/prod-app
-            git pull origin Production
-            dotnet publish -c Release -o out
+            git fetch origin Production
+            git reset --hard origin/Production
+            dotnet publish -c Release -o .
             sudo systemctl restart prod-app.service
