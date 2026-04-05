@@ -43,7 +43,13 @@ jobs:
           key: ${{ secrets.PROD_SERVER_SSH_KEY }}
           script: |
             cd /var/www/prod-app
-            git fetch origin Production
-            git reset --hard origin/Production
-            dotnet publish -c Release -o .
+            # 1. GitHub સાથે કોડ સિંક કરો
+            sudo git fetch origin Production
+            sudo git reset --hard origin/Production
+            sudo rm -f *.json *.dll *.exe *.config *.pdb
+            
+            # 3. ચોક્કસ પ્રોજેક્ટ ફાઇલ પબ્લિશ કરો
+            sudo dotnet publish MyTestAPI.csproj -c Release -o .
+            
+            # 4. સર્વિસ રિસ્ટાર્ટ કરો
             sudo systemctl restart prod-app.service
