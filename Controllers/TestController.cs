@@ -4,16 +4,16 @@ namespace MyTestAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProducController : ControllerBase
+    public class TestController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<ProducController> _logger;
+        private readonly ILogger<TestController> _logger;
 
-        public ProducController(ILogger<ProducController> logger)
+        public TestController(ILogger<TestController> logger)
         {
             _logger = logger;
         }
